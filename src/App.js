@@ -1,29 +1,47 @@
-//import logo from './logo.svg';
-import { ChakraProvider } from "@chakra-ui/react";
-import './App.css';
-import Navbottom from './components/Navbottom';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Specials from './components/Specials';
-import Testimonials from './components/Testimonials';
+import {
+  Route, 
+  Routes
+} from 'react-router-dom';
+import pages from './utils/pages';
+import Layout from './components/layout/Layout';
+import Home from './components/pages/Home';
+import Bookings from './components/pages/Bookings';
+import ConfirmedBooking from './components/pages/Bookings/ConfirmedBooking';
+import NotFound from './components/pages/NotFound';
+import UnderConstruction from './components/pages/UnderConstruction';
 
-function App() {
+const App = () => {
   return (
-    <ChakraProvider>
-      <main>
-        <Header />
-      </main>
-    </ChakraProvider>
+    <>
+      <Layout>
+        <Routes>
+          <Route path={pages.get('home').path} element={<Home />} />
+          <Route 
+            path={pages.get('about').path} 
+            element={<UnderConstruction />} 
+          />
+          <Route 
+            path={pages.get('menu').path} 
+            element={<UnderConstruction />} 
+          />
+          <Route path={pages.get('bookings').path} element={<Bookings />} />
+          <Route 
+            path={pages.get('confirmedBooking').path} 
+            element={<ConfirmedBooking />} 
+          />
+          <Route 
+            path={pages.get('orderOnline').path} 
+            element={<UnderConstruction />} 
+          />
+          <Route 
+            path={pages.get('login').path} 
+            element={<UnderConstruction />} 
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Layout>
+    </>
   );
-}
+};
 
 export default App;
-
-
-
-/* <Header />
-<Specials />
-<Testimonials />
-<About />
-<Navbottom /> */
